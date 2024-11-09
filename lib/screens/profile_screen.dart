@@ -8,10 +8,12 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  // TODO: deklasrasikan variabel yang diberikan
-  bool isSignedIn = false;
-  String fullName = ' ';
-  int favoriteCandiCount =0 ;
+  //TODO: deklarasikan variabel yang dibutuhkan
+  bool isSignIn = true;
+  String fullName = '';
+  String userName = '';
+  int favoriteCandiCount = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,14 +28,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               children: [
-              //   TODO: 2. buat bagian ProfileScreen yang berisi gambar profil
+                // TODO: 2. buat bagian Profilescreen yang berisi gambar profil
                 Align(
                   alignment: Alignment.topCenter,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 200-50),
-                    child:
-                    Stack(
-                      alignment:Alignment.topCenter,
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
                       children: [
                         Container(
                           decoration: BoxDecoration(
@@ -42,18 +43,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                           child: CircleAvatar(
                             radius: 50,
-                            backgroundImage: AssetImage("images/placeholder_image.png"),
+                            backgroundImage: AssetImage('images/placeholder_image.png'),
                           ),
                         ),
-                        if (isSignedIn)
-                          IconButton(onPressed: (){},
-                              icon: Icon(Icons.camera_alt, color: Colors.deepPurple[50],),),
+                        if(isSignIn)
+                          IconButton(
+                            onPressed: (){},
+                            icon: Icon(Icons.camera_alt, color: Colors.deepPurple[50],),
+                          ),
                       ],
                     ),
                   ),
                 ),
-              //   TODO: 3. buat bagian ProfileInfo yang beriosi info profil
-              //   TODO: 4. buat ProfileActions yang berisi TextButton sign in/out
+                // TODO: 3. buat bagian ProfileInfo yang berisi info profil
+                // TODO: 4. buat profileAction yang berisi Textbutton sign in/out
               ],
             ),
           ),
