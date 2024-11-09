@@ -53,12 +53,14 @@ class _SearchScreenState extends State<SearchScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
+                        padding: EdgeInsets.all(8),
+                        width: 100,
+                        height: 100,
                         child: ClipRRect(
                             child: Image.asset(candi.imageAsset, fit: BoxFit.cover),
                         borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-
                     ],
                   ),
                   margin: EdgeInsets.symmetric(
