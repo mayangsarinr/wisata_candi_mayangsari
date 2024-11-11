@@ -16,39 +16,43 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO: 2. Buat appbar dengan judul Pencarian Candi
+      // TODO: 2. Buat appBar dengan judul pencarian candi
       appBar: AppBar(title: Text('Pencarian Candi'),),
-      //TODO: 3. Buat body berupa Column
+      // TODO: 3. Buat body berupa Column
       body: Column(
         children: [
-          //TODO: 4. Buat TextField pencarian sebagai anak dari Column
+          // TODO: 4. Buat TextField sebagai anak dari Column
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16),
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: (BorderRadius.circular(5)),
-                color: (Colors.deepPurple[50]),
-              ),
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.deepPurple[50]),
               child: TextField(
                 autofocus: false,
-                decoration: InputDecoration(hintText: 'Cari candi...',
-                    prefixIcon: Icon(Icons.search),
-                    border: InputBorder.none,
-                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.deepPurple)),
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 12,
-                    ),
+                // TODO: 6. Implementasi fitur pencarian
+                decoration: InputDecoration(
+                  hintText: 'Cari Candi...',
+                  prefixIcon: Icon(Icons.search),
+                  // TODO: 7. Implementasi pengosongan input
+                  border: InputBorder.none,
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepPurple)),
+                  contentPadding:
+                  EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 ),
               ),
             ),
           ),
-          //TODO: 5. Buat ListView hasil pencarian sebagai anak dari Column
-          ListView.builder(
+          // TODO: 5. Buat Listview hasil pencarian sebagai anak dari Column
+          Expanded(
+            child: ListView.builder(
               itemCount: _filteredCandis.length,
-              itemBuilder: (context, index){
+              itemBuilder: (context, index) {
                 final candi = _filteredCandis[index];
+                // TODO: 8. Implementasi GestureDetector dan Hero animation
                 return Card(
+                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -57,23 +61,29 @@ class _SearchScreenState extends State<SearchScreen> {
                         width: 100,
                         height: 100,
                         child: ClipRRect(
-                            child: Image.asset(candi.imageAsset, fit: BoxFit.cover),
-                        borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(candi.imageAsset, fit: BoxFit.cover),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(candi.name, style:TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                            SizedBox(height: 4),
+                            Text(candi.location)
+                          ],
                         ),
                       ),
                     ],
                   ),
-                  margin: EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 4,
-                  ),
                 );
-              }
+              },
+            ),
           ),
         ],
       ),
-
-
     );
   }
 }
