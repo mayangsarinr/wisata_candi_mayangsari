@@ -11,9 +11,13 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       //TODO: 2. Tetapkan parameter shape, margin, dan elevation dari Cari
+
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15)
       ),
+
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+
       margin: EdgeInsets.all(4),
       elevation: 1,
       child: Column(
@@ -28,6 +32,7 @@ class ItemCard extends StatelessWidget {
               ),
             ),
           ),
+
           Padding(
             padding: const EdgeInsets.only(
               left: 16,
@@ -51,6 +56,9 @@ class ItemCard extends StatelessWidget {
               ),
             ),
           ),
+          Text("data"),
+          Text("data"),
+
           //TODO: 4. Buat Text sebagai anak dari Column
           //TODO: 5. Buat Text sebagai anak dari Column
 
