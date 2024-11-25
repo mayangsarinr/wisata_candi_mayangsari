@@ -9,10 +9,21 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   //TODO: deklarasikan variabel yang dibutuhkan
-  bool isSignIn = true;
+  bool isSignIn = false;
   String fullName = '';
   String userName = '';
   int favoriteCandiCount = 0;
+
+  void signIn(){
+    // setState(() {
+    //   isSignIn = true;
+    //   userName = 'budi';
+    //   fullName = 'Budi Santoso';
+    //   favoriteCandiCount = 3;
+    // });
+    Navigator.pushNamed(context, '/signin');
+  }
+
 
   @override
   Widget build(BuildContext context) {

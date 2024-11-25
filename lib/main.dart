@@ -13,7 +13,7 @@ void main() {
       initialRoute: '/',
       routes:{
         '/':(context) => SignUpScreen(),
-        '/SignInScreen' : (context) => SignInScreen(),
+        '/SignInScreen' : (context) => SignInscreen(),
         // '/SignUpScreen' : (context) => SignUpScreen(),
       }
   ));
@@ -43,6 +43,12 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: MainScreen(),
+      initialRoute: '/',
+      routes: {
+        '/homescreen': (context) => const HomeScreen(),
+        '/sigin' : (context) => const SignInscreen(),
+        '/signup': (context) => const SignUpScreen(),
+      },
     );
   }
 }
