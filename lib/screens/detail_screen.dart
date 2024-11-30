@@ -14,15 +14,49 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   bool isFavorite = false;
-  bool isSignedIn = false;
+  bool isSignedIn = false; //menyimpan status sign in
 
+  @override
+  void initState(){
+    super.initState();
+    _checkSignInStatus();//memriksa status sign in saat layar dimuat
+    _loadFavoriteStatus();//memeriksa status favorit saat layar dimuat
+  }
+
+  //memeriksa status sign in
+  void _checkSignInStatus() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool signedIn = prefs.getBool('isSignedIn') ?? false;
+    setState(() {
+      isSignedIn = signedIn;
+    });
+  }
+  //Memeriksa status favorit
+  void _loadFavoriteStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool favorite = prefs.getBool('favorite_${widget.candi.name}') ?? false;
+    setState(() {
+      isFavorite = favorite;
+    });
+  }
   Future<void>_toggleFavorite() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     //Memeriksa apakah pengguna sudah sign in
-    if(!IsSignedIn){
-      //jika belum sign in, arahkan ke SignInScream
+    if(!isSignedIn){
+      //jika belum sign in, arahkan ke SignInScren
+      WidgetsBinding.instance.addPostFrameCallback((_){
+        Navigator.pushReplacementNamed(context, '/signin');
+      });
+      return;
     }
+
+    bool favoriteStatus = !isFavorite;
+    prefs.setBool('favorite_${widget.candi.name}', favoriteStatus);
+
+    setState(() {
+      isFavorite = favoriteStatus;
+    });
   }
 
   @override
@@ -88,7 +122,14 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
                       ),
                       IconButton(
-                          onPressed: () {}, icon: Icon(Icons.favorite_border))
+                          onPressed: () {
+                            _toggleFavorite();
+                          },
+                          icon: Icon(isSignedIn && isFavorite
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                            color: isSignedIn && isFavorite ? Colors.red : null,)
+                      )
                     ],
                   ),
                   // info tengah (lokasi, dibangun, tipe)
